@@ -17,7 +17,7 @@ def main():
             if tokens[0] == 'q':
                 quit()
             elif tokens[0] == '+':
-                print add(int(tokens[1]), int(tokens[2]))
+                print add(tokens[1:])
             elif tokens[0] == '-':
                 print subtract(int(tokens[1]), int(tokens[2]))
             elif tokens[0] == '*':

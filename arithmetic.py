@@ -1,5 +1,11 @@
-def add(num1, num2):
-    return num1 + num2
+def add(numstrings):
+    if len(numstrings) == 0:
+        return None
+    else:
+        total = 0
+        for s in numstrings:
+            total += int(s)
+        return total
 
 
 def subtract(num1, num2):
