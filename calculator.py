@@ -9,15 +9,20 @@ from arithmetic import *
 
 
 def file_to_print(in_filename):
-    incoming_file = open(in_filename)
-    for line in incoming_file:
-        print line.strip(), "=", calculate_from_line(line)
+    with open(in_filename) as incoming_file:
+        for line in incoming_file:
+            print line.strip(), "=", calculate_from_line(line)
 
 
 def file_to_file(in_filename, out_filename):
     incoming_file = open(in_filename)
+    outgoing_file = open(out_filename, "w")
+    for line in incoming_file:
+        equation = line.strip() + " = " + str(calculate_from_line(line)) + "\n"
+        outgoing_file.write(equation)
 
     incoming_file.close()
+    outgoing_file.close()
 
 
 def calculate_from_line(line):
