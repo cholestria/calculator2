@@ -27,40 +27,44 @@ def file_to_file(in_filename, out_filename):
 
 def calculate_from_line(line):
     tokens = line.split()
+    if tokens[0] == 'q':
+        return 'quit'
     try:
-        if tokens[0] == 'q':
-            return 'quit'
-        else:
-            numbers = map(int, tokens[1:])
-            if tokens[0] == '+':
-                return "%.2f" % reduce(add, numbers)
-            elif tokens[0] == '-':
-                return '{:.2f}'.format(reduce(subtract, numbers))
-            elif tokens[0] == '*':
-                return "{:.2f}".format(reduce(multiply, numbers))
-            elif tokens[0] == '/':
-                return "{:06.3f}".format(reduce(divide, numbers))
-            elif tokens[0] == 'square':
-                return square(int(tokens[1]))
-            elif tokens[0] == 'cube':
-                return cube(int(tokens[1]))
-            elif tokens[0] == 'pow' or tokens[0] == '**' or tokens[0] == 'exp':
-                return reduce(power, numbers)
-            elif tokens[0] == 'mod' or tokens[0] == '%':
-                return reduce(mod, numbers)
-            else:
-                return "I don't understand"
+        numbers = map(int, tokens[1:])
     except:
-        return "This doesn't work"
+        print "I need integers here"
+
+    if tokens[0] == '+':
+        return reduce(add, numbers)
+    elif tokens[0] == '-':
+        return reduce(subtract, numbers)
+    elif tokens[0] == '*':
+        return reduce(multiply, numbers)
+    elif tokens[0] == '/':
+        return reduce(divide, numbers)
+    elif tokens[0] == 'square':
+        return square(numbers[0])
+    elif tokens[0] == 'cube':
+        return cube(numbers[0])
+    elif tokens[0] == 'pow' or tokens[0] == '**' or tokens[0] == 'exp':
+        return reduce(power, numbers)
+    elif tokens[0] == 'mod' or tokens[0] == '%':
+        return reduce(mod, numbers)
+    else:
+        return "I don't understand this input"
 
 
 # Your code goes here
-def main():
+# def main():
+#     while True:
+#         user_input = raw_input("> ")
+#         if calculate_from_line(user_input) == 'quit':
+#             break
+#         print calculate_from_line(user_input)
+
+if __name__ == '__main__':
     while True:
         user_input = raw_input("> ")
         if calculate_from_line(user_input) == 'quit':
-            quit()
+            break
         print calculate_from_line(user_input)
-
-if __name__ == '__main__':
-    main()
